@@ -51,8 +51,8 @@ $(document).ready(function () {
     // hide start button and display first question
     function startGame() {
         resetGame();
-        startTimer();
-        $("#startButton").click(function(){
+        $("#startButton").click(function () {
+            startTimer();
             $("#gameArea").html("<h4 class='text-center mt-3 font-weight-bolder'>" + trivia.questions.q1 + "</h4>")
             for(let i = 0; i < 4; i++){
                 $("#gameArea").append("<button class='col-8 mx-auto m-2'>" + trivia.selections.q1[i] + "</button>")
@@ -65,25 +65,25 @@ $(document).ready(function () {
         correct = 0;
         incorrect = 0;
         unanswered = 0;
+        timer = 20;
+        timerRunning = false;
     };
 
     //start timer
     function startTimer() {
+        timerRunning = true;
         $("#timeRemainingAmount").text(timer);
-        clearInterval(timerInterval);
-        timerInterval = setInterval(decrementTimer, 1000);
-    };
-
-    // reset the timer
-    function resetTimer() {
-
+        if (timerRunning === true) {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(decrementTimer, 1000);
+        };
     };
 
     // decrement timer
     function decrementTimer() {
         timer--;
         $("#timeRemainingAmount").text(timer);
-        if(timer === 0){
+        if (timer === 0) {
             stopTimer();
         }
     };
