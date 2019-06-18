@@ -54,8 +54,8 @@ $(document).ready(function () {
         $("#startButton").click(function () {
             startTimer();
             $("#gameArea").html("<h4 class='text-center mt-3 font-weight-bolder'>" + trivia.questions.q1 + "</h4>")
-            for(let i = 0; i < 4; i++){
-                $("#gameArea").append("<button class='col-8 mx-auto m-2'>" + trivia.selections.q1[i] + "</button>")
+            for (let i = 0; i < 4; i++) {
+                $("#gameArea").append("<button class='answerButton col-8 mx-auto m-2'>" + trivia.selections.q1[i] + "</button>")
             }
         });
     };
