@@ -12,12 +12,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="row bg-success text-warning pt-3 pb-3 mt-4 mb-4">
-            <h1 class="headerText col-8 mx-auto text-center">The Legend of Zelda:</h1>
-            <h2 class="headerText col-8 mx-auto text-center">The Trivia Game</h2>
+        <div class="row bg-success text-warning mt-3 mb-3">
+            <h1 class="col-8 mx-auto text-center">The Legend of Zelda:</h1>
+            <h2 class="col-8 mx-auto text-center">The Trivia Game</h2>
         </div>
-        <div class="row card bg-secondary">
-            <button class="col-4 mx-auto bg-dark text-light mt-5 mb-5 p-5">Begin Quest</button>
+        <div id="gameArea" class="row card bg-info">
+            <h3 id="timeRemainingText" class="text-center mt-2 mb-2">Time Remaining: <span id="timeRemainingAmount"></span></h3>
+            <button id="startButton" class="col-4 mx-auto bg-dark text-light mt-4 mb-4 p-5">BEGIN QUEST</button>
         </div>
     </div>
 </body>
