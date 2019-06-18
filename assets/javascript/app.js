@@ -2,8 +2,10 @@
 let correct = 0;
 let incorrect = 0;
 let unanswered = 0;
-
+let timer = 20;
+let timerRunning = false;
 const trivia = {
+// questions asked
     questions: {
         q1: "In Ocarina of Time, which is NOT on of the three spells of the Goddesses that can be acquired?",
         q2: "Who is the main villain in Skyward Sword'?",
@@ -16,6 +18,7 @@ const trivia = {
         q9: "What is the value of a red rupee?",
         q10: "In Wind Waker, what is the real identity of the King of Red Lions?",
     },
+// correct answer to each question
     answers: {
         q1: "Hylia's Strength",
         q2: "Ghirahim",
@@ -28,6 +31,7 @@ const trivia = {
         q9: "20",
         q10: "King Daphnes",
     },
+// answers that can be selected for each question
     selections: {
         q1: ["Din's Fire", "Nayru's Love", "Farore's Wind", "Hylia's Strength"],
         q2: ["Ganon", "Ghirahim", "Vaati", "Zant"],
