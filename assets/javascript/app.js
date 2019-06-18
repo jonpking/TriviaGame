@@ -29,16 +29,16 @@ const trivia = {
         q10: "King Daphnes",
     },
     selections: {
-        q1: ["Din's Fire","Nayru's Love","Farore's Wind","Hylia's Strength"],
-        q2: ["Ganon","Ghirahim","Vaati","Zant"],
-        q3: ["Zelda Fitzgerald","Zelda Williams","Zelda Rubinstein","Zelda Spellman"],
-        q4: ["Honor","Wisdom","Courage","Power"],
-        q5: ["Hookshot","Boomerang","Hammer","Bug-Catching Net"],
-        q6: ["Ruto","Impa","Sheik","Tetra"],
-        q7: ["Evil Link","Knil","He does not have a name","Dark Link"],
-        q8: ["Monkey","Wolf","Cat","Hawk"],
-        q9: ["100","5","20","1"],
-        q10: ["King Daphnes","Princess Zelda","Goddess Hylia","Sage Sahasrahla"],
+        q1: ["Din's Fire", "Nayru's Love", "Farore's Wind", "Hylia's Strength"],
+        q2: ["Ganon", "Ghirahim", "Vaati", "Zant"],
+        q3: ["Zelda Fitzgerald", "Zelda Williams", "Zelda Rubinstein", "Zelda Spellman"],
+        q4: ["Honor", "Wisdom", "Courage", "Power"],
+        q5: ["Hookshot", "Boomerang", "Hammer", "Bug-Catching Net"],
+        q6: ["Ruto", "Impa", "Sheik", "Tetra"],
+        q7: ["Evil Link", "Knil", "He does not have a name", "Dark Link"],
+        q8: ["Monkey", "Wolf", "Cat", "Hawk"],
+        q9: ["100", "5", "20", "1"],
+        q10: ["King Daphnes", "Princess Zelda", "Goddess Hylia", "Sage Sahasrahla"],
     }
 
 };
