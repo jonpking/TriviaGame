@@ -9,11 +9,11 @@ $(document).ready(function () {
     const trivia = {
         // questions asked
         questions: {
-            q1: "In Ocarina of Time, which is NOT on of the three spells of the Goddesses that can be acquired?",
+            q1: "In Ocarina of Time, which is NOT one of the three spells of the Goddesses that can be acquired?",
             q2: "Who is the main villain in Skyward Sword'?",
             q3: "After whom is the character Zelda named?",
             q4: "Which of the following is NOT a part of the Triforce?",
-            q5: "In A Link to the Past, which item, other than the Master Sword can be used to reflect Agahnim's spells?",
+            q5: "In A Link to the Past, which item, other than the Master Sword, can be used to reflect Agahnim's spells?",
             q6: "What is the name of Zelda's alter ego in Ocarina of time?",
             q7: "What is the name of Link's evil doppelganger?",
             q8: "In Twilight Princess, into what animal does link transform?",
