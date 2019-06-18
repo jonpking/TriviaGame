@@ -46,3 +46,43 @@ const trivia = {
     }
 
 };
+
+// hide start button and display first question
+function startGame(){
+
+};
+
+// reset the game to default state
+function resetGame(){
+
+};
+
+//start timer
+function startTimer(){
+
+};
+
+// reset the timer
+function resetTimer(){
+
+};
+
+// cycle to next question
+function nextQuestion(){
+
+};
+
+// check if answer if correct
+function answerCheck(){
+
+};
+
+// increment correct answer variable
+function answerCorrect(){
+
+};
+
+// increment incorrect answer variable
+function answerIncorrect(){
+
+};
