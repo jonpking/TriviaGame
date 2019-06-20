@@ -6,12 +6,12 @@ let unanswered;
 let timer;
 let timerRunning;
 let timerInterval;
-
+let usedQuestionsArray;
 const trivia = {
     // questions asked
     questions: {
         q1: "In Ocarina of Time, which is NOT one of the three spells of the Goddesses that can be acquired?",
-        q2: "Who is the main villain in Skyward Sword'?",
+        q2: "Who is the main villain in Skyward Sword?",
         q3: "After whom is the character Zelda named?",
         q4: "Which of the following is NOT a part of the Triforce?",
         q5: "In A Link to the Past, which item, other than the Master Sword, can be used to reflect Agahnim's spells?",
@@ -62,12 +62,13 @@ function startGame() {
 function displayQuestion(questionID) {
     $("#gameArea").html("<h4 class='text-center mt-3 font-weight-bolder'>" + trivia.questions[questionID] + "</h4>")
     for (let i = 0; i < 4; i++) {
-        $("#gameArea").append("<button onclick='answerCheck(event)' class='answerButton data-question-id='" + questionID + "' col-8 mx-auto m-2'>" + trivia.selections[questionID][i] + "</button>")
+        $("#gameArea").append("<button onclick='answerCheck(event)' data-question-id='" + questionID + "' class='answerButton col-8 mx-auto m-2'>" + trivia.selections[questionID][i] + "</button>")
     }
 };
 
 // reset the game to default state
 function resetGame() {
+    usedQuestionsArray = [];
     correct = 0;
     incorrect = 0;
     unanswered = 0;
@@ -93,8 +94,8 @@ function decrementTimer() {
         console.log(unanswered);
         unanswered++;
         console.log(unanswered);
-        stopTimer();
         nextQuestion();
+        resetTimer();
     }
 };
 
@@ -108,15 +109,25 @@ function resetTimer() {
     timer = 10;
 };
 
-// check if we've itterated over all questions and display results if we have
+// check if we've itterated over all questions and prevent repeat questions and display results if we have
+
+function generateRandomQuestionID() {
+    return "q" + Math.floor(Math.random() * (9) + 1);
+};
 
 function nextQuestion() {
-    // reset the timer
-    resetTimer();
     // get a random number between 1-10 and generate property name from the random number
-    let questionID = "q" + Math.floor(Math.random() * (9) + 1);
+    let questionID = generateRandomQuestionID();
+    // as long as questionID is in the usedQuestionArray, generate a new questionID
+    while (usedQuestionsArray.includes(questionID)) {
+        questionID = generateRandomQuestionID();
+    };
+    // if questionID is not in usedQuestionsArray, add it
+    usedQuestionsArray.push(questionID);
     // display the question and answers for that property
     displayQuestion(questionID);
+    // reset the timer
+    resetTimer();
 };
 
 // check if answer if correct
