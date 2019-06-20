@@ -94,8 +94,7 @@ function decrementTimer() {
         console.log(unanswered);
         unanswered++;
         console.log(unanswered);
-        nextQuestion();
-        resetTimer();
+        checkIfLastQuestion();
     }
 };
 
@@ -109,10 +108,18 @@ function resetTimer() {
     timer = 10;
 };
 
-// check if we've itterated over all questions and prevent repeat questions and display results if we have
+// check if we've itterated over all questions and display results if we have, if not call nextQuestion function
+function checkIfLastQuestion() {
+    if (usedQuestionsArray.length === Object.keys(trivia.questions).length) {
+        displayResults();
+    }
+    else {
+        nextQuestion();
+    };
+};
 
 function generateRandomQuestionID() {
-    return "q" + Math.floor(Math.random() * (9) + 1);
+    return "q" + Math.floor(Math.random() * (Object.keys(trivia.questions).length - 1) + 1);
 };
 
 function nextQuestion() {
@@ -134,10 +141,10 @@ function nextQuestion() {
 function answerCheck(event) {
     if (event.target.innerText === trivia.answers[event.target.dataset.questionId]) {
         correct++;
-        nextQuestion();
+        checkIfLastQuestion();
     } else {
         incorrect++;
-        nextQuestion();
+        checkIfLastQuestion();
     };
 };
 
