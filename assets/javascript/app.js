@@ -54,11 +54,16 @@ function startGame() {
     resetGame();
     $("#startButton").click(function () {
         startTimer();
-        $("#gameArea").html("<h4 class='text-center mt-3 font-weight-bolder'>" + trivia.questions.q1 + "</h4>")
-        for (let i = 0; i < 4; i++) {
-            $("#gameArea").append("<button onclick='answerCheck(event)' class='answerButton col-8 mx-auto m-2'>" + trivia.selections.q1[i] + "</button>")
-        }
+        nextQuestion();
     });
+};
+
+// display questions and selections from trivia object
+function displayQuestion(questionID) {
+    $("#gameArea").html("<h4 class='text-center mt-3 font-weight-bolder'>" + trivia.questions[questionID] + "</h4>")
+    for (let i = 0; i < 4; i++) {
+        $("#gameArea").append("<button onclick='answerCheck(event)' class='answerButton data-question-id='" + questionID + "' col-8 mx-auto m-2'>" + trivia.selections[questionID][i] + "</button>")
+    }
 };
 
 // reset the game to default state
@@ -66,7 +71,7 @@ function resetGame() {
     correct = 0;
     incorrect = 0;
     unanswered = 0;
-    timer = 10;
+    resetTimer();
     timerRunning = false;
 };
 
@@ -98,20 +103,36 @@ function stopTimer() {
     clearInterval(timerInterval);
 };
 
-// cycle to next question
-function nextQuestion() {
+// reset timer
+function resetTimer() {
+    timer = 10;
+};
 
+// check if we've itterated over all questions and display results if we have
+
+function nextQuestion() {
+    // reset the timer
+    resetTimer();
+    // get a random number between 1-10 and generate property name from the random number
+    let questionID = "q" + Math.floor(Math.random() * (9) + 1);
+    // display the question and answers for that property
+    displayQuestion(questionID);
 };
 
 // check if answer if correct
 function answerCheck(event) {
-    if (event.target.innerText === trivia.answers.q1) {
+    if (event.target.innerText === trivia.answers[event.target.dataset.questionId]) {
         correct++;
         nextQuestion();
     } else {
         incorrect++;
         nextQuestion();
     };
+};
+
+// display results at end of quiz
+function displayResults() {
+
 };
 
 // run the code
