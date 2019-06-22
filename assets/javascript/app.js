@@ -88,7 +88,8 @@ function decrementTimer() {
     }
     if (timer === 0) {
         unanswered++;
-        checkIfLastQuestion();
+        displayUnanswered();
+        setTimeout(checkIfLastQuestion,2000);
     }
 };
 
@@ -102,7 +103,7 @@ function stopTimer() {
 
 // reset timer
 function resetTimer() {
-    timer = 20;
+    timer = 10;
 };
 
 // check if we've itterated over all questions and display results if we have, if not call nextQuestion function
@@ -112,6 +113,7 @@ function checkIfLastQuestion() {
         stopTimer();
     }
     else {
+        startTimer();
         nextQuestion();
     };
 };
@@ -140,13 +142,31 @@ function nextQuestion() {
 function answerCheck(event) {
     if (event.target.innerText === trivia.answers[event.target.dataset.questionId]) {
         correct++;
-        // displayRightOrWrong();
-            // settimeout(checkIfLastQuestion, 5000);
-        checkIfLastQuestion();
+        displayCorrect();
+        setTimeout(checkIfLastQuestion,2000);
     } else {
         incorrect++;
-        checkIfLastQuestion();
+        displayIncorrect()
+        setTimeout(checkIfLastQuestion,2000);
     };
+};
+
+// displays feedback screen for question being answered correctly
+function displayCorrect() {
+    stopTimer();
+    $("#gameArea").html("<h1 class='text-center mt-3 font-weight-bolder'>WELL DONE!</h1>");
+};
+
+// displays feedback screen for question being answered incorrectly
+function displayIncorrect() {
+    stopTimer();
+    $("#gameArea").html("<h1 class='text-center mt-3 font-weight-bolder'>BETTER LUCK NEXT TIME!</h1>");
+};
+
+// displays feedback screen for question not being answered within time limit
+function displayUnanswered() {
+    stopTimer();
+    $("#gameArea").html("<h1 class='text-center mt-3 font-weight-bolder'>STILL THERE?</h1>");
 };
 
 // display results at end of quiz
