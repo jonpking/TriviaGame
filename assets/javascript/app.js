@@ -52,15 +52,12 @@ const trivia = {
 // hide start button and display first question
 function startGame() {
     resetGame();
-    $("#startButton").click(function () {
-        startTimer();
-        nextQuestion();
-    });
+    $("#gameArea").html("<button onclick='startTimer(); nextQuestion();' class='col-4 mx-auto bg-dark text-light mt-4 mb-4 p-5'>BEGIN QUEST</button>");
 };
 
 // display questions and selections from trivia object
 function displayQuestion(questionID) {
-    $("#gameArea").html("<h4 class='text-center mt-3 font-weight-bolder'>" + trivia.questions[questionID] + "</h4>")
+    $("#gameArea").html("<h4 class='text-center mt-3 font-weight-bolder'>" + trivia.questions[questionID] + "</h4>");
     for (let i = 0; i < 4; i++) {
         $("#gameArea").append("<button onclick='answerCheck(event)' data-question-id='" + questionID + "' class='answerButton col-8 mx-auto m-2'>" + trivia.selections[questionID][i] + "</button>")
     }
@@ -80,20 +77,17 @@ function resetGame() {
 function startTimer() {
     timerRunning = true;
     $("#timeRemainingAmount").text(timer);
-    if (timerRunning === true) {
-        clearInterval(timerInterval);
-        timerInterval = setInterval(decrementTimer, 1000);
-    };
+    timerInterval = setInterval(decrementTimer, 1000);
 };
 
 // decrement timer
 function decrementTimer() {
-    timer--;
-    $("#timeRemainingAmount").text(timer);
+    if (timerRunning === true) {
+        timer--;
+        $("#timeRemainingAmount").text(timer);
+    }
     if (timer === 0) {
-        console.log(unanswered);
         unanswered++;
-        console.log(unanswered);
         checkIfLastQuestion();
     }
 };
@@ -101,17 +95,21 @@ function decrementTimer() {
 // stop timer
 function stopTimer() {
     clearInterval(timerInterval);
+    timerRunning = false;
+    timer = "-";
+    $("#timeRemainingAmount").text(timer);
 };
 
 // reset timer
 function resetTimer() {
-    timer = 10;
+    timer = 20;
 };
 
 // check if we've itterated over all questions and display results if we have, if not call nextQuestion function
 function checkIfLastQuestion() {
     if (usedQuestionsArray.length === Object.keys(trivia.questions).length) {
         displayResults();
+        stopTimer();
     }
     else {
         nextQuestion();
@@ -119,7 +117,8 @@ function checkIfLastQuestion() {
 };
 
 function generateRandomQuestionID() {
-    return "q" + Math.floor(Math.random() * (Object.keys(trivia.questions).length - 1) + 1);
+    // Math.floor(Math.random() * Math.floor(max));
+    return "q" + Math.floor(Math.random() * Object.keys(trivia.questions).length + 1);
 };
 
 function nextQuestion() {
@@ -141,6 +140,8 @@ function nextQuestion() {
 function answerCheck(event) {
     if (event.target.innerText === trivia.answers[event.target.dataset.questionId]) {
         correct++;
+        // displayRightOrWrong();
+            // settimeout(checkIfLastQuestion, 5000);
         checkIfLastQuestion();
     } else {
         incorrect++;
@@ -150,7 +151,15 @@ function answerCheck(event) {
 
 // display results at end of quiz
 function displayResults() {
-
+    $("#gameArea").html("<h4 class='text-center mt-3 font-weight-bolder'>Your results are:</h4>");
+    $("#gameArea").append("<br>");
+    $("#gameArea").append("<h3 class='text-center'>Correct: " + correct + "</h3>");
+    $("#gameArea").append("<br>");
+    $("#gameArea").append("<h3 class='text-center'>Incorrect: " + incorrect + "</h3>");
+    $("#gameArea").append("<br>");
+    $("#gameArea").append("<h3 class='text-center'>Unanswered: " + unanswered + "</h3>");
+    $("#gameArea").append("<br>");
+    $("#gameArea").append("<button onclick='startGame()' class='text-center'>Start Over?</button>");
 };
 
 // run the code
