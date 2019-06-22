@@ -1,5 +1,4 @@
 
-
 let correct;
 let incorrect;
 let unanswered;
@@ -83,8 +82,11 @@ function startTimer() {
 // decrement timer
 function decrementTimer() {
     if (timerRunning === true) {
-        timer--;
         $("#timeRemainingAmount").text(timer);
+        console.log(timer)
+        timer--;
+
+
     }
     if (timer === 0) {
         unanswered++;
